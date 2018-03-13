@@ -9,7 +9,6 @@
                 <Icon :type="item.children[0].icon || item.icon" :size="iconSize" :key="'menuicon' + item.name"></Icon>
                 <span class="layout-text" :key="'title' + item.name">{{ itemTitle(item.children[0]) }}</span>
             </MenuItem>
-
             <Submenu v-if="item.children.length > 1" :name="item.name" :key="item.name">
                 <template slot="title">
                     <Icon :type="item.icon" :size="iconSize"></Icon>
@@ -59,6 +58,5 @@ export default {
             }
         });
     }
-
 };
 </script>
