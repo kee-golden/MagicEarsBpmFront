@@ -6,7 +6,6 @@ const user = {
             localStorage.removeItem('X-Magicears-Token');
             Cookies.remove('loginName');
             Cookies.remove('password');
-            Cookies.remove('access');
             // 恢复默认样式
             let themeLink = document.querySelector('link[name="theme"]');
             themeLink.setAttribute('href', '');

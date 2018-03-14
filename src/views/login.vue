@@ -71,7 +71,6 @@
                                 Cookies.set('email', response.data.user.email);
                                 Cookies.set('realName', response.data.user.realName);
                                 Cookies.set('phone', response.data.user.phone);
-                                Cookies.set('access', 1);
                                 this.$router.push({
                                     name: 'home_index'
                                 });
