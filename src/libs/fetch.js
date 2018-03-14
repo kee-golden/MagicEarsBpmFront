@@ -8,7 +8,6 @@ let fetchUtil = {
 
 fetchUtil.fetch = function (options) {
     return new Promise((resolve, reject) => {
-        debugger;
         const instance = axios.create({
             timeout: 20000, // 超时
             headers: {
