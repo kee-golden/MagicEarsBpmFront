@@ -4,20 +4,18 @@ import { loginByName } from '../../api/login';
 const user = {
     mutations: {
         login ({ commit }, userInfo) {
-            const loginName = userInfo.loginName.trim();
+            const userName = userInfo.userName.trim();
             const password = userInfo.password.trim();
             debugger;
             return new Promise((resolve, reject) => {
-                loginByName(loginName, password).then((response) => {
+                loginByName(userName, password).then((response) => {
                     const data = response.data;
                     if (response.data.token) {
-                        localStorage.setItem('X-TouchSpring-Token', response.data.token);
-                        Cookies.set('loginName', response.data.user.loginName);
-                        Cookies.set('email', response.data.user.email);
-                        Cookies.set('realName', response.data.user.realName);
-                        Cookies.set('phone', response.data.user.phone);
-                        commit('SET_TOKEN', data.token);
-                        commit('SET_BASE_INFO', response.data.user);
+                        localStorage.setItem('X-TouchSpring-Token', data.token);
+                        Cookies.set('loginName', data.user.loginName);
+                        Cookies.set('email', data.user.email);
+                        Cookies.set('realName', data.user.realName);
+                        Cookies.set('phone', data.user.phone);
                     }
                     resolve();
                 }).catch((error) => {
