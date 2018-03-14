@@ -60,17 +60,13 @@ export default {
         handleSubmit () {
             this.$refs.loginForm.validate((valid) => {
                 if (valid) {
-                    Cookies.set('user', this.form.userName);
-                    Cookies.set('password', this.form.password);
                     if (this.form.userName === 'iview_admin') {
                         Cookies.set('access', 0);
                     } else {
                         Cookies.set('access', 1);
                     }
                     this.$store.commit('login', this.form).then(() => {
-                        this.$router.push({
-                            name: 'home_index'
-                        });
+                        debugger;
                     });
                 }
             });

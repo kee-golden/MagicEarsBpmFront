@@ -24,7 +24,7 @@ module.exports = merge(webpackBaseConfig, {
         port:8088,
         proxy: {
             '/api': {
-              target: 'http://192.168.2.118:8081',
+              target: 'http://localhost:8081',
               changeOrigin: true,
               pathRewrite: {
                 '^/api': '/api'
