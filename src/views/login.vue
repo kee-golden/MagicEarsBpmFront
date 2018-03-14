@@ -14,14 +14,14 @@
                     <Form ref="loginForm" :model="form" :rules="rules">
                         <FormItem prop="userName">
                             <Input v-model="form.userName" placeholder="请输入用户名">
-                                <span slot="prepend">
+                            <span slot="prepend">
                                     <Icon :size="16" type="person"></Icon>
                                 </span>
                             </Input>
                         </FormItem>
                         <FormItem prop="password">
                             <Input type="password" v-model="form.password" placeholder="请输入密码">
-                                <span slot="prepend">
+                            <span slot="prepend">
                                     <Icon :size="14" type="locked"></Icon>
                                 </span>
                             </Input>
@@ -38,41 +38,50 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-export default {
-    data () {
-        return {
-            form: {
-                userName: 'iview_admin',
-                password: ''
-            },
-            rules: {
-                userName: [
-                    { required: true, message: '账号不能为空', trigger: 'blur' }
-                ],
-                password: [
-                    { required: true, message: '密码不能为空', trigger: 'blur' }
-                ]
-            }
-        };
-    },
-    methods: {
-        handleSubmit () {
-            this.$refs.loginForm.validate((valid) => {
-                if (valid) {
-                    if (this.form.userName === 'iview_admin') {
-                        Cookies.set('access', 0);
-                    } else {
-                        Cookies.set('access', 1);
-                    }
-                    this.$store.commit('login', this.form).then(() => {
-                        debugger;
-                    });
+    /* eslint-disable indent */
+
+    import Cookies from 'js-cookie';
+    import login from '../api/login';
+
+    export default {
+        data () {
+            return {
+                form: {
+                    userName: 'iview_admin',
+                    password: ''
+                },
+                rules: {
+                    userName: [
+                        {required: true, message: '账号不能为空', trigger: 'blur'}
+                    ],
+                    password: [
+                        {required: true, message: '密码不能为空', trigger: 'blur'}
+                    ]
                 }
-            });
+            };
+        },
+        methods: {
+            handleSubmit () {
+                this.$refs.loginForm.validate((valid) => {
+                    if (valid) {
+                        login.loginByName(this.form.userName, this.form.password).then((response) => {
+                            if (response.data.token) {
+                                localStorage.setItem('X-Magicears-Token', response.data.token);
+                                Cookies.set('loginName', response.data.user.loginName);
+                                Cookies.set('email', response.data.user.email);
+                                Cookies.set('realName', response.data.user.realName);
+                                Cookies.set('phone', response.data.user.phone);
+                                Cookies.set('access', 1);
+                                this.$router.push({
+                                    name: 'home_index'
+                                });
+                            }
+                        });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>
 
 <style>

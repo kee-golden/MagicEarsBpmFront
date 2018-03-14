@@ -4,8 +4,6 @@ import Vue from 'vue';
 
 const app = {
     state: {
-        token: localStorage.getItem('X-TouchSpring-Token'),
-        baseInfo: {},
         cachePage: [],
         lang: '',
         isFullScreen: false,
