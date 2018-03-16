@@ -14,25 +14,13 @@
       <div style="padding: 9px 6px">
         <el-row>
           <el-col :span="24">
-            <el-table :data="tableData" ref="parentTable" stripe v-loading.body="loading" style="width: 100%"
+            <el-table :data="tableData" ref="parentTable" v-loading.body="loading" style="width: 100%"
                       @current-change="handleMenuChange" :row-class-name="tableRowClassName">
               <el-table-column prop="level" :resizable="false" label="等级" width="120">
-                <template v-if="scope.level==1" scope="scope">
-                  {{scope.level}}
-                  <span v-if="scope.row.level==1">
-                     <i class="el-icon-fa-angle-right"></i>
-                  </span>
-                  <span v-if="scope.row.level==2">
-                     <i class="el-icon-fa-angle-right"></i>
-                  </span>
-                  <span v-if="scope.row.level==3">
-                     <i class="el-icon-fa-angle-right"></i>
-                  </span>
-                </template>
               </el-table-column>
               <el-table-column prop="icon" :resizable="false" label="图标" width="100">
                 <template scope="scope">
-                  <i :class="'el-icon-'+scope.row.icon" v-if="scope.row.icon"></i>
+                  <i :class="scope.row.icon"></i>
                 </template>
               </el-table-column>
               <el-table-column prop="name" :resizable="false" label="菜单名称" width="200">
@@ -95,10 +83,11 @@
     },
     methods: {
       tableRowClassName(row, index) {
-        if (row.level === 1) {
+        debugger;
+        if (row.row.level === 1) {
           return 'level1';
-        } else if (row.level === 3) {
-          return 'level3';
+        } else if (row.row.level === 2) {
+          return 'level2';
         }
         return '';
       },
@@ -355,6 +344,14 @@
       background: #F8F8F8;
       padding: 0;
     }
+  }
+
+  .el-table .level2 {
+    background: oldlace;
+  }
+
+  .el-table .level1 {
+    background: #f0f9eb;
   }
 
 </style>

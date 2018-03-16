@@ -3,6 +3,7 @@
     <div>111</div>
     <el-table
       :data="tableData"
+      :row-class-name="tableRowClassName"
       style="width: 100%">
       <el-table-column
         prop="date"
@@ -36,7 +37,11 @@
         ],
       };
     },
-    methods: {},
+    methods: {
+      tableRowClassName({ row, rowIndex }) {
+        return 'warning-row';
+      },
+    },
     mounted() {
     },
     created() {
@@ -45,5 +50,13 @@
 </script>
 
 <style lang='scss'>
+
+  .el-table .warning-row {
+    background: oldlace;
+  }
+
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
 
 </style>

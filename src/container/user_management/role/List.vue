@@ -14,7 +14,7 @@
       <div style="padding: 9px 6px">
         <el-row>
           <el-col :span="24">
-            <el-table :data="tableData" border v-loading.body="loading" st yle="width: 100%">
+            <el-table :data="tableData" border stripe v-loading.body="loading" st yle="width: 100%">
               <el-table-column prop="name" :resizable="false" label="角色名称" min-width="150">
               </el-table-column>
               <el-table-column prop="description" :resizable="false" label="权限" min-width="300">
