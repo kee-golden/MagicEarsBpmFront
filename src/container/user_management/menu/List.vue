@@ -29,7 +29,7 @@
               </el-table-column>
               <el-table-column prop="action" :resizable="false" label="链接" min-width="100">
               </el-table-column>
-              <el-table-column :label="$t('message.Operate')" :resizable="false">
+              <el-table-column label="操作" :resizable="false">
                 <template scope="scope">
                   <el-button type="text" @click="add(scope.row.id)" icon="edit">添加子菜单
                   </el-button>
