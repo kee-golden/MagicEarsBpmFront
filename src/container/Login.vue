@@ -5,16 +5,16 @@
     <p style="font-size: 12px;
     position: absolute;
     bottom: 35px;
-    right: 160px;"> 博世汽车柴油系统有限公司 | 沪ICP备10002431号-21</p>
+    right: 160px;">魔力耳朵| 京ICP备17003643号-4<sup>[1]</sup></p>
     <div id="logo">
-      <img src="../assets/bosch_logo_english.png" width="120px">
+      <img src="../assets/logo.png" width="120px">
     </div>
     <el-row>
       <el-col :span="6" :offset="9">
         <div class="login-form-wrap">
           <div class="login-form-title">
-            <span>RBCD</span>
-            Connectivity System
+            <span>魔力耳朵</span>
+            Magic Ears
           </div>
           <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm"
                    label-position="left"

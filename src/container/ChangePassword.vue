@@ -4,54 +4,15 @@
       <!--<vue-particles color="#dedede"></vue-particles>-->
     </div>
     <div id="logo">
-      <img src="../assets/bosch_logo_english.png" width="120px">
+      <img src="../assets/logo.png" width="120px">
     </div>
     <p style="font-size: 12px;
     position: absolute;
     bottom: 35px;
-    right: 160px;"> 博世汽车柴油系统有限公司 | 沪ICP备10002431号-21</p>
+    right: 160px;"> 魔力耳朵| 京ICP备17003643号-4<sup>[1]</sup></p>
 
     <el-row>
       <el-col :span="6" :offset="9">
-        <div class="login-form-wrap">
-          <div class="login-form-title">
-            <!--<img src="../assets/icon.png" alt="" style="width: 100%">-->
-            <span>RBCD</span>
-            Connectivity System
-          </div>
-          <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left"
-                   label-width="0px"
-                   class="card-box login-form">
-            <h3 class="title">Please change your password!</h3>
-
-            <el-form-item prop="loginName">
-              <span class="svg-container"></span>
-              <el-input name="loginName" type="text" v-model="loginForm.loginName" autoComplete="on"
-                        placeholder="Login Name"></el-input>
-            </el-form-item>
-            <el-form-item prop="oldPassword">
-              <span class="svg-container"></span>
-              <el-input name="password" type="password" @keyup.enter.native="login" v-model="loginForm.oldPassword"
-                        autoComplete="on" placeholder="Password"></el-input>
-            </el-form-item>
-            <el-form-item prop="newPassword">
-              <span class="svg-container"></span>
-              <el-input name="password" type="password" @keyup.enter.native="login" v-model="loginForm.newPassword"
-                        autoComplete="on" placeholder="New Password"></el-input>
-            </el-form-item>
-            <el-form-item prop="checkPassword">
-              <span class="svg-container"></span>
-              <el-input name="checkPassword" type="password" @keyup.enter.native="login"
-                        v-model="loginForm.checkPassword"
-                        autoComplete="on" placeholder="Check Password"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="changePwd">
-                Submit
-              </el-button>
-            </el-form-item>
-          </el-form>
-        </div>
       </el-col>
     </el-row>
   </div>
