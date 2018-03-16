@@ -3,7 +3,7 @@ import { loginByName } from '../../api/login';
 
 const user = {
   state: {
-    token: localStorage.getItem('X-TouchSpring-Token'),
+    token: localStorage.getItem('X-magicears-Token'),
     baseInfo: {},
     privileges: new Set(),
   },
@@ -25,7 +25,7 @@ const user = {
         loginByName(email, userInfo.password).then((response) => {
           const data = response.data;
           if (response.data.token) {
-            localStorage.setItem('X-TouchSpring-Token', response.data.token);
+            localStorage.setItem('X-magicears-Token', response.data.token);
             Cookies.set('loginName', response.data.user.loginName);
             Cookies.set('email', response.data.user.email);
             Cookies.set('realName', response.data.user.realName);
@@ -41,7 +41,7 @@ const user = {
     },
     logout({ commit }, userInfo) {
       commit('SET_TOKEN', '');
-      localStorage.removeItem('X-TouchSpring-Token');
+      localStorage.removeItem('X-magicears-Token');
     },
   },
 };

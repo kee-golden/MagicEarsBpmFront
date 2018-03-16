@@ -11,7 +11,7 @@ export function fetch(options) {
     const instance = axios.create({
       timeout: 20000, // 超时
       headers: {
-        'X-touchspring-Token': store.state.user.token,
+        'X-magicears-Token': store.state.user.token,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
