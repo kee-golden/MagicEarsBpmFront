@@ -24,7 +24,7 @@
 
 <script>
 import Cookies from 'js-cookie';
-import { userMenus, saveUserSelf } from '../api/user';
+import { userMenus } from '../api/user';
 import { changeMyPassword } from '../api/login';
 
 export default {
