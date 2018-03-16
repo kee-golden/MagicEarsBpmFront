@@ -73,7 +73,7 @@
         <el-button type="primary" @click="savePrivileges">提交</el-button>
       </div>
     </el-dialog>
-    <el-dialog :title="$t('message.Menus')" :visible.sync="menuDialogVisible" size="small">
+    <el-dialog title="菜单" :visible.sync="menuDialogVisible" size="small">
       <el-tree
         :check-strictly="true"
         :data="menus"

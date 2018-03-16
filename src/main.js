@@ -9,15 +9,14 @@ import ElementUI from 'element-ui';
 
 import VueI18n from 'vue-i18n';
 // import Cookies from 'js-cookie';
-import locale from 'element-ui/lib/locale/lang/en';
+import locale from 'element-ui/lib/locale/lang/zh-CN';
 
-import 'element-ui/lib/theme-default/index.css';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import App from './App';
 import { messages } from './i18n/index';
 import router from './router';
 import store from './store';
-import '../theme/index.css';
 import '../src/styles/index.scss';
 import '../src/styles/icon.less';
 
