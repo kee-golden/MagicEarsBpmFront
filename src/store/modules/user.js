@@ -7,9 +7,7 @@ const user = {
     baseInfo: {},
     privileges: new Set(),
   },
-  getters: {
-    organizations: state => state.baseInfo.organizations,
-  },
+  getters: {},
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token;
