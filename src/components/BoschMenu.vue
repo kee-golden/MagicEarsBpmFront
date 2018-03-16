@@ -1,116 +1,24 @@
 <template>
   <div>
-    <ul class="menu">
-      <li class="menu-item" style="margin-left: 250px;">
-        <span style=" display: inline-block;position: absolute; top: 13px;left: 30px;">
-          <img src="../assets/RBCD-logo.png" style="height: 36px;cursor: pointer" alt="">
-        </span>
-      </li>
-      <li class="menu-item">
-        <div @click="handleItemClick('/index')" class="menu-item-title">
-         首页
-        </div>
-      </li>
-
-      <li v-for="menu in menus" :key="menu.id" class="menu-item" @mouseenter="onMouseEnter(menu.id)" @mouseleave="onMouseLeave" :class="{display:menuItemIndex===menu.id}">
-        <div @click="handleItemClick(menu.action)" :key="menu.id" v-if="!menu.children" class="menu-item-title">
-          {{ menu.name }}
-        </div>
-        <div v-if="menu.children" class="menu-item-title">
-          {{ menu.name }}
-        </div>
-        <ul v-if="menu.children">
-          <li v-for="child in menu.children">
-            <div class="second-title" @click="handleItemClick(child.action)" v-if="!child.children">
-              {{ child.name }}
-            </div>
-            <div class="simple-title second-title" v-if="child.children">{{ child.name }}</div>
-            <section v-if="child.children">
-              <div v-if="!grandson.target" @click="handleItemClick(grandson.action)" v-for="grandson in child.children" :key="grandson.id">
-                {{ grandson.name }}
-              </div>
-              <a v-else :href="grandson.action" target="_blank" style="display: block">{{ grandson.name }}
-              </a>
-            </section>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <div class="user-card" style=" position: absolute; top: 0;right: 150px;">
-      <div class="user-card-title">
-        <i class="el-icon-setting"></i>
-      </div>
-      <div class="user-card-detail">
-        <div class="user-card-login-name">{{user.loginName}}</div>
-        <div class="user-card-setting">
-          <!--<div>-->
-            <!--<el-button type="text" size="mini" @click="changeLocate(zh)">中文/English</el-button>-->
-          <!--</div>-->
-          <div>
-            <el-button type="text" size="mini" @click="baseInfoDialogVisible = true">用户信息
-            </el-button>
+    <el-menu
+      :default-active="defaultActive"
+      router="true"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose" v-for="menu in menus">
+      <el-submenu :index="'' + menu.id">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>{{ menu.name }}</span>
+        </template>
+        <el-menu-item-group v-for="child in menu.children">
+          <template slot="title">{{ child.name }}</template>
+          <div v-for="grandson in child.children">
+            <el-menu-item :index="'' + grandson.id" :route="grandson.action">{{ grandson.name }}</el-menu-item>
           </div>
-          <div>
-            <el-button type="text" size="mini" @click="passwordDialogVisible = true">修改密码
-            </el-button>
-          </div>
-          <div>
-            <el-button type="text" size="mini" @click="logout()">退出</el-button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="user-card" style=" position: absolute; top: 0;right: 200px;">
-      <div class="user-card-title">
-        <i class="el-icon-message"></i>
-      </div>
-      <div class="user-card-detail" style="text-align: center">
-        <a id="mailto" href="mailto:Yanfang.ZHANG3@cn.bosch.com">Bosch</a>
-      </div>
-    </div>
-    <div style=" position: absolute; top: 15px;right: 15px;">
-      <img src="../assets/bosch_logo.svg" alt="">
-    </div>
-    <el-dialog :title="$t('dialog.Change_Password')" :visible.sync="passwordDialogVisible" size="tiny" :modal="false" @close="onDialogClose('passwordForm')">
-      <div>
-        <el-form autoComplete="on" :model="passwordForm" :rules="loginRules" ref="passwordForm" label-position="left" label-width="0px" class="card-box login-form">
-          <el-form-item prop="oldPassword">
-            <span class="svg-container"></span>
-            <el-input name="password" type="password" @keyup.enter.native="login" v-model="passwordForm.oldPassword" autoComplete="on" placeholder="请输入原密码"></el-input>
-          </el-form-item>
-          <el-form-item prop="newPassword">
-            <span class="svg-container"></span>
-            <el-input name="password" type="password" @keyup.enter.native="login" v-model="passwordForm.newPassword" autoComplete="on" placeholder="请输入新密码"></el-input>
-          </el-form-item>
-          <el-form-item prop="checkPassword">
-            <span class="svg-container"></span>
-            <el-input name="checkPassword" type="password" @keyup.enter.native="login" v-model="passwordForm.checkPassword" autoComplete="on" placeholder="再次输入新密码"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" style="width:100%;" @click.native.prevent="changePwd">
-              提交
-            </el-button>
-          </el-form-item>
-        </el-form>
-      </div>
-    </el-dialog>
-    <el-dialog title="用户信息修改" :visible.sync="baseInfoDialogVisible" size="tiny" :modal="false" @close="onDialogClose('userForm')">
-      <el-form :model="form" :rules="formRules" ref="userForm">
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="form.email" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="真是姓名" prop="realName">
-          <el-input v-model="form.realName" auto-complete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="手机号" prop="phone">
-          <el-input v-model="form.phone" auto-complete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="baseInfoDialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="saveMyBaseInfo">提交</el-button>
-      </span>
-    </el-dialog>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
   </div>
 </template>
 
@@ -123,224 +31,31 @@ export default {
   name: 'BoschMenu',
   componentName: 'BoschMenu',
   methods: {
-    onDialogClose(form) {
-      this.$refs[form].resetFields();
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    onMouseEnter(index) {
-      this.menuItemIndex = index;
-    },
-    onMouseLeave() {
-      this.menuItemIndex = null;
-    },
-    handleItemClick(index) {
-      this.menuItemIndex = null;
-      try {
-        this.$router.push(index);
-      } catch (e) {
-        console.error(e);
-      }
-    },
-    saveMyBaseInfo() {
-      this.$refs.userForm.validate((valid) => {
-        if (valid) {
-          saveUserSelf(this.form).then((response) => {
-            const data = response.data;
-            this.$message(
-              {
-                type: 'success',
-                message: 'Save successfully',
-              });
-            this.baseInfoDialogVisible = false;
-            Cookies.set('email', this.form.email);
-            Cookies.set('realName', this.form.realName);
-            Cookies.set('phone', this.form.phone);
-          });
-        }
-      });
-    },
-    selected(index, indexPath) {
-      this.$store.dispatch('setCurrentRouter', index);
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
     },
     getMenus() {
       userMenus().then((response) => {
-        this.menus = response.data.menus;
-      });
-    },
-    changePwd() {
-      this.$refs.passwordForm.validate((valid) => {
-        if (valid) {
-          changeMyPassword(this.passwordForm).then((response) => {
-            if (response.code === 1200) {
-              this.$message(
-                {
-                  type: 'success',
-                  message: '修改成功',
-                });
-            } else {
-              this.$message(
-                {
-                  type: 'error',
-                  message: '请输入当前的登录名和密码 ！',
-                });
-            }
-          }).then(() => {
-            this.$store.dispatch('logout');
-            this.$router.push({ path: '/' });
-          });
-        }
-      });
-    },
-    setInfo() {
-      this.dialogInfoVisible = true;
-    },
-    logout() {
-      this.$confirm('确定退出登录？', '提示', {
-        confirmButtonText: '确认',
-        cancelButtonText: '取消',
-        type: 'warning',
-      }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '退出成功!',
+        const menus = response.data.menus;
+        const defaultActive = [];
+        menus.forEach((menu) => {
+          defaultActive.push('' + menu.id);
         });
-        this.$store.dispatch('logout');
-        this.$router.push('/');
+        this.menus = menus;
       });
-    },
-    handleClose() {
     },
   },
   data() {
-    const checkPassword = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error('Password can not be empty !'));
-      }
-      const emailReg = /(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}/;
-      if (!emailReg.test(value)) {
-        callback(new Error('The password must contain letters, numbers, special characters, at least 8 characters!'));
-      }
-      callback();
-      return true;
-    };
-    const reCheckPassword = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('Please repeat the new password'));
-      } else if (value !== this.passwordForm.newPassword) {
-        callback(new Error('The password for the two time is inconsistent !'));
-      } else {
-        callback();
-      }
-    };
-    const checkPhone = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error('Telephone Number can not be empty !'));
-      }
-      const phoneReg = /^1[3|4|5|8][0-9]\d{4,8}$/;
-      if (!phoneReg.test(value)) {
-        callback(new Error('Wrong Telephone Number !'));
-      }
-      callback();
-      return true;
-    };
     return {
-      loading: true,
-      menuItemIndex: null,
-      number: 1,
-      passwordForm: {
-        loginName: '',
-        oldPassword: '',
-        newPassword: '',
-        checkPassword: '',
-      },
-      loginRules: {
-        loginName: [
-          {
-            required: true,
-            trigger: 'blur',
-            message: 'Please input your login name !',
-          },
-        ],
-        oldPassword: [
-          {
-            required: true,
-            trigger: 'blur',
-            message: 'Please input your current password ',
-          },
-        ],
-        newPassword: [
-          {
-            required: true,
-            trigger: 'blur',
-            message: 'Please input the new  password',
-
-          },
-          {
-            validator: checkPassword,
-            trigger: 'blur,change',
-          },
-        ],
-        checkPassword: [
-          {
-            required: true,
-            trigger: 'blur',
-          },
-          {
-            validator: reCheckPassword,
-            trigger: 'blur,change',
-          },
-        ],
-      },
-      form: {
-        email: '',
-        realName: '',
-        phone: '',
-      },
-      formRules: {
-        email: [
-          {
-            required: true,
-            type: 'email',
-            message: 'Please enter correct email',
-            trigger: 'blur,change',
-          },
-        ],
-        realName: [
-          {
-            required: true,
-            message: 'Please enter real name',
-            trigger: 'blur,change',
-          },
-        ],
-        phone: [
-          {
-            validator: checkPhone,
-            required: true,
-            trigger: 'blur,change',
-          },
-        ],
-      },
-      currentRoute: '',
-      passwordDialogVisible: false,
-      baseInfoDialogVisible: false,
-      dialogInfoVisible: false,
       menus: [],
-      organizations: [],
-      user: {
-        loginName: '',
-        realName: '',
-        email: '',
-      },
-      formLabelWidth: 120,
+      defaultActive: [],
     };
   },
   created() {
     this.getMenus();
-    this.user.loginName = Cookies.get('loginName');
-    this.user.realName = Cookies.get('realName');
-    this.user.email = Cookies.get('email');
-    this.form.email = Cookies.get('email');
-    this.form.realName = Cookies.get('realName');
-    this.form.phone = Cookies.get('phone');
   },
   beforeCreate() {
   },

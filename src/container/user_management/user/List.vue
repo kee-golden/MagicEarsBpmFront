@@ -2,7 +2,7 @@
   <div>
     <div class="breadcrumb">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/index' }">{{ $t("message.Home_Page") }}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item>用户管理</el-breadcrumb-item>
         <el-breadcrumb-item>用户列表</el-breadcrumb-item>
         <el-button type="text" @click="add" style="float: right;" icon="plus">
