@@ -1,15 +1,17 @@
 <template>
   <div>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header><Header /></el-header>
       <el-container>
-        <el-aside width="200px"><BoschMenu /></el-aside>
+        <el-aside width="200px"><Menu /></el-aside>
         <el-container>
-          <el-main><router-view></router-view></el-main>
+          <el-main>
+            <router-view></router-view>
+          </el-main>
         </el-container>
       </el-container>
     </el-container>
-    <footer class="bosch-footer"></footer>
+    <footer class="footer"></footer>
   </div>
 
 </template>
@@ -17,12 +19,14 @@
 <script>
   import Cookies from 'js-cookie';
 
-  import BoschMenu from '../../components/BoschMenu';
+  import Menu from '../../components/Menu';
+  import Header from '../../components/Header';
   import AppMain from '../layout/AppMain';
 
   export default {
     components: {
-      BoschMenu,
+      Header,
+      Menu,
       AppMain,
     },
     data() {
@@ -68,7 +72,7 @@
     line-height: 200px;
   }
 
-  .bosch-footer {
+  .footer {
     background: url(../../assets/supergraphic_top.jpg) no-repeat center top;
     background-size: 3000px auto;
     padding-top: 12px;

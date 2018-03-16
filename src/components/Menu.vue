@@ -1,14 +1,14 @@
 <template>
   <div>
     <el-menu
-      :default-active="defaultActive"
-      router="true"
+      default-active="1"
+      :router="true"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose" v-for="menu in menus">
       <el-submenu :index="'' + menu.id">
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i :class="menu.icon"></i>
           <span>{{ menu.name }}</span>
         </template>
         <el-menu-item-group v-for="child in menu.children">
@@ -28,8 +28,8 @@ import { userMenus } from '../api/user';
 import { changeMyPassword } from '../api/login';
 
 export default {
-  name: 'BoschMenu',
-  componentName: 'BoschMenu',
+  name: 'Menu',
+  componentName: 'Menu',
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

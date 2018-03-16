@@ -2,7 +2,6 @@ import QS from 'qs';
 import { fetch } from '../utils/fetch';
 
 export function loginByName(loginName, password) {
-  debugger;
   const data = {
     loginName,
     password,

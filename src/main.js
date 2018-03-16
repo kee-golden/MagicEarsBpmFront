@@ -17,7 +17,6 @@ import App from './App';
 import { messages } from './i18n/index';
 import router from './router';
 import store from './store';
-import '../src/styles/index.scss';
 import '../src/styles/icon.less';
 
 

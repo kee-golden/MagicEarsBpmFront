@@ -35,11 +35,6 @@ export default new Router({
       component: LoginDemo,
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: Test,
-    },
-    {
       path: '/changePassword/:userName',
       name: 'changePassword',
       component: ChangePassword,
@@ -69,6 +64,10 @@ export default new Router({
       path: '/system',
       component: Dashboard,
       children: [
+        {
+          path: '/test',
+          component: Test,
+        },
         {
           path: 'user/list',
           component: UserList,
