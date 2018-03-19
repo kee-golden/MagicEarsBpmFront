@@ -17,39 +17,35 @@
             <span>魔力耳朵</span>
             Magic Ears
           </div>
-          <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="账号登陆" name="first">
-              <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm"
-                       label-position="left"
-                       label-width="0px"
-                       class="card-box login-form">
-                <el-form-item prop="loginName">
-                  <span class="svg-container"></span>
-                  <el-input name="loginName" type="text" v-model="loginForm.loginName" autoComplete="on"
-                            placeholder="Login Name"></el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                  <span class="svg-container"></span>
-                  <el-input name="password" type="password" @keyup.enter.native="login" v-model="loginForm.password"
-                            autoComplete="on" placeholder="Password"></el-input>
-                </el-form-item>
-                <el-form-item style="margin-bottom: 5px">
-                  <div class="login-button" style="width:100%;" @click="login">
-                    Login
-                  </div>
-                </el-form-item>
-                <p style="font-size: 12px;margin-top: 100px;text-align: right;">
-                  <router-link to="/ForgetPassword" style="color:#0f4167">Forget Password</router-link>
-                </p>
-              </el-form>
-            </el-tab-pane>
-            <el-tab-pane label="钉钉扫码登陆" name="second">
-              <div id="login_container"></div>
-            </el-tab-pane>
-          </el-tabs>
+          <!--<el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm"-->
+                   <!--label-position="left"-->
+                   <!--label-width="0px"-->
+                   <!--class="card-box login-form">-->
+            <!--<el-form-item prop="loginName">-->
+              <!--<span class="svg-container"></span>-->
+              <!--<el-input name="loginName" type="text" v-model="loginForm.loginName" autoComplete="on"-->
+                        <!--placeholder="Login Name"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item prop="password">-->
+              <!--<span class="svg-container"></span>-->
+              <!--<el-input name="password" type="password" @keyup.enter.native="login" v-model="loginForm.password"-->
+                        <!--autoComplete="on" placeholder="Password"></el-input>-->
+            <!--</el-form-item>-->
+            <!--<el-form-item style="margin-bottom: 5px">-->
+              <!--<div class="login-button" style="width:100%;" @click="login">-->
+                <!--Login-->
+              <!--</div>-->
+            <!--</el-form-item>-->
+            <!--<p style="font-size: 12px;margin-top: 100px;text-align: right;">-->
+              <!--<router-link to="/ForgetPassword" style="color:#0f4167">Forget Password</router-link>-->
+            <!--</p>-->
+          <!--</el-form>-->
+          <div id="login_container"></div>
+          <el-button type="text" @click="login">账号和密码登陆</el-button>
         </div>
       </el-col>
     </el-row>
+
 
   </div>
 
@@ -65,7 +61,6 @@
     components: {},
     data() {
       return {
-        activeName: 'first',
         loginForm: {
           loginName: '',
           password: '',
@@ -89,17 +84,6 @@
       };
     },
     methods: {
-      handleClick() {
-        if (this.activeName === 'second') {
-          const obj = DDLogin({
-            id: 'login_container',
-            goto: '',
-            style: 'border:none;background-color:#FFFFFF;',
-            width: '365',
-            height: '400',
-          });
-        }
-      },
       login() {
 //        this.$store.dispatch('login', this.loginForm).then(() => {
 //          this.loading = false;
@@ -107,9 +91,20 @@
 //        }).catch((err) => {
 //          this.loading = false;
 //        });
+        debugger;
+        window.location.href = 'https://oapi.dingtalk.com/connect/oauth2/sns_authorize?appid=dingoavuchxgijee1cfmi1' +
+          '&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=http://localhost:8081/api/login';
       },
     },
-    mounted() {},
+    mounted() {
+      const obj = DDLogin({
+        id: 'login_container',
+        goto: '',
+        style: 'border:none;background-color:#FFFFFF;',
+        width: '365',
+        height: '400',
+      });
+    },
     created() {
     },
   };
