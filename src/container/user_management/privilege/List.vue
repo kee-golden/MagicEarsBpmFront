@@ -20,13 +20,13 @@
               <el-table-column prop="code" :resizable="false" label="编码" min-width="100">
               </el-table-column>
               <el-table-column prop="action" :resizable="false" label="链接" min-width="100">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <HttpMethodTag :type="scope.row.type"></HttpMethodTag>
                   {{scope.row.action}}
                 </template>
               </el-table-column>
               <el-table-column label="操作" :resizable="false">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <el-button type="text" @click="add(scope.row.id)" icon="edit">添加子权限
                   </el-button>
                   <el-button type="text" @click="edit(scope.row.id)" icon="edit">编辑</el-button>
@@ -42,13 +42,13 @@
               <el-table-column prop="code" label="编码" min-width="100">
               </el-table-column>
               <el-table-column prop="action" label="链接" min-width="100">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <HttpMethodTag :type="scope.row.type"></HttpMethodTag>
                   {{scope.row.action}}
                 </template>
               </el-table-column>
               <el-table-column label="操作">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <el-button type="text" @click="edit(scope.row.id)" icon="edit">编辑</el-button>
                   <el-button type="text" @click="del(scope.row.id)" icon="delete">删除</el-button>
                 </template>

@@ -19,7 +19,7 @@
               <el-table-column prop="level" :resizable="false" label="等级" width="120">
               </el-table-column>
               <el-table-column prop="icon" :resizable="false" label="图标" width="100">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <i :class="scope.row.icon"></i>
                 </template>
               </el-table-column>
@@ -30,7 +30,7 @@
               <el-table-column prop="action" :resizable="false" label="链接" min-width="100">
               </el-table-column>
               <el-table-column label="操作" :resizable="false">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <el-button type="text" @click="add(scope.row.id)" icon="edit">添加子菜单
                   </el-button>
                   <el-button type="text" @click="edit(scope.row.id)" icon="edit"> 编辑</el-button>

@@ -22,7 +22,7 @@
               <!--<el-table-column prop="email" :resizable="false" :label="$t('message.Email')" min-width="100">-->
               <!--</el-table-column>-->
               <!--<el-table-column prop="roleList" :resizable="false" :label="$t('message.Role')" min-width="100">-->
-                <!--<template scope="scope">-->
+                <!--<template slot-scope="scope">-->
                   <!--<span v-for="role in scope.row.roleList" :key="role.id">-->
                     <!--{{role.name}}&nbsp;&nbsp;-->
                   <!--</span>-->
@@ -32,14 +32,14 @@
               <!--<el-table-column prop="createAt" :resizable="false" :label="$t('message.Created_Date')" min-width="150">-->
               <!--</el-table-column>-->
               <!--<el-table-column prop="organizationList" :resizable="false" :label="$t('message.OEM')" min-width="300">-->
-                <!--<template scope="scope">-->
+                <!--<template slot-scope="scope">-->
                   <!--<span v-for="organization in scope.row.organizationList" :key="organization.id">-->
                     <!--{{organization.name}}&nbsp;&nbsp;-->
                   <!--</span>-->
                 <!--</template>-->
               <!--</el-table-column>-->
               <!--<el-table-column min-width="250" :resizable="false" :label="$t('message.Operate')">-->
-                <!--<template scope="scope">-->
+                <!--<template slot-scope="scope">-->
                   <!--<el-popover ref="popover" placement="right">-->
                     <!--<h1>{{ wechat }}</h1>-->
                   <!--</el-popover>-->
@@ -103,7 +103,7 @@
       <!--<template>-->
         <!--<el-table ref="multipleTable" :data="organizations" border tooltip-effect="dark" style="width: 100%">-->
           <!--<el-table-column prop="name" :label="$t('input.Choose')">-->
-            <!--<template scope="scope">-->
+            <!--<template slot-scope="scope">-->
               <!--<el-checkbox-group v-model="form.organizations">-->
                 <!--<el-checkbox :label="scope.row.id"> {{scope.row.id}}-->
                 <!--</el-checkbox>-->
@@ -113,7 +113,7 @@
           <!--<el-table-column prop="name" :label="$t('message.Organization_Name')" show-overflow-tooltip>-->
           <!--</el-table-column>-->
           <!--<el-table-column prop="name" :label="$t('message.isAdmin')">-->
-            <!--<template scope="scope">-->
+            <!--<template slot-scope="scope">-->
               <!--<el-checkbox-group v-model="form.adminOrganizations">-->
                 <!--<el-checkbox :label="scope.row.id" :disabled="!form.organizations.includes(scope.row.id)"> &nbsp;-->
                 <!--</el-checkbox>-->
@@ -132,7 +132,7 @@
       <!--<template>-->
         <!--<el-table ref="multipleTable" :data="fleets" border tooltip-effect="dark" style="width: 100%">-->
           <!--<el-table-column prop="name" :label="$t('input.Choose')">-->
-            <!--<template scope="scope">-->
+            <!--<template slot-scope="scope">-->
               <!--<el-checkbox-group v-model="form.fleets">-->
                 <!--<el-checkbox :label="scope.row.id"> {{scope.row.id}}-->
                 <!--</el-checkbox>-->
@@ -142,7 +142,7 @@
           <!--<el-table-column prop="name" :label="$t('message.Fleet_Name')" show-overflow-tooltip>-->
           <!--</el-table-column>-->
           <!--<el-table-column prop="name" :label="$t('message.isAdmin')">-->
-            <!--<template scope="scope">-->
+            <!--<template slot-scope="scope">-->
               <!--<el-checkbox-group v-model="form.adminFleets">-->
                 <!--<el-checkbox :label="scope.row.id" :disabled="!form.fleets.includes(scope.row.id)"> &nbsp;-->
                 <!--</el-checkbox>-->

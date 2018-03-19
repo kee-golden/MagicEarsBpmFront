@@ -25,7 +25,7 @@
               <el-table-column prop="createAt" label="创建时间" width="200"
                                :resizable="false"></el-table-column>
               <el-table-column label="操作" :resizable="false">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <el-button type="text" @click="edit(scope.row.id)" icon="edit">编辑</el-button>
                   <el-button type="text" @click="del(scope.row.id)" icon="delete">删除</el-button>
                 </template>

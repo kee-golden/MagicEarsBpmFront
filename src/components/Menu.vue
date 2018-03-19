@@ -5,16 +5,17 @@
       :router="true"
       class="el-menu-vertical-demo"
       @open="handleOpen"
+      :key="menu.id"
       @close="handleClose" v-for="menu in menus">
       <el-submenu :index="'' + menu.id">
         <template slot="title">
           <i :class="menu.icon"></i>
           <span>{{ menu.name }}</span>
         </template>
-        <el-menu-item-group v-for="child in menu.children">
+        <el-menu-item-group :key="child.id" v-for="child in menu.children">
           <template slot="title">{{ child.name }}</template>
           <div v-for="grandson in child.children">
-            <el-menu-item :index="'' + grandson.id" :route="grandson.action">{{ grandson.name }}</el-menu-item>
+            <el-menu-item :index="'' + grandson.id" :key="grandson.id" :route="grandson.action">{{ grandson.name }}</el-menu-item>
           </div>
         </el-menu-item-group>
       </el-submenu>

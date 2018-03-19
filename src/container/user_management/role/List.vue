@@ -20,7 +20,7 @@
               <el-table-column prop="description" :resizable="false" label="权限" min-width="300">
               </el-table-column>
               <el-table-column label="操作" :resizable="false" min-width="200">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <el-button type="text" @click="privilege(scope.row.id)" icon="edit">权限
                   </el-button>
                   <el-button type="text" @click="menu(scope.row.id)" icon="edit">菜单</el-button>
