@@ -6,7 +6,7 @@
     <p style="font-size: 12px;
     position: absolute;
     bottom: 35px;
-    right: 160px;">魔力耳朵| 京ICP备17003643号-4<sup>[1]</sup></p>
+    right: 160px;">魔力耳朵 | 京ICP备17003643号-4<sup>[1]</sup></p>
     <div id="logo">
       <img src="../assets/logo.png" width="120px">
     </div>
